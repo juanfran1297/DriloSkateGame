@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 12.0f;
-    public Transform respawn;
 
     private Rigidbody2D rb;
     private Animator miAnim;
@@ -26,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         miAnim = GetComponent<Animator>();
 
         groundCheck = transform.Find("GroundCheck");
+        groundedRadius = .1f;
     }
 
     // Update is called once per frame
@@ -75,13 +75,5 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(new Vector2(0, jumpForce));
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Dead")
-        {
-            transform.position = respawn.position;
-        }
     }
 }

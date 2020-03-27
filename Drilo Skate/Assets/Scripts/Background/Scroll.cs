@@ -6,8 +6,6 @@ public class Scroll : MonoBehaviour {
 
 	private float velocidadFondo = 0.1f;
 
-	private bool enMovimiento = true;
-
 	private float tiempoInicio = 0f;
 
 	// Update is called once per frame
