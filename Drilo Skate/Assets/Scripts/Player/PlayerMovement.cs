@@ -5,26 +5,83 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 12.0f;
-    public Rigidbody2D rb;
+    public Transform respawn;
+
+    private Rigidbody2D rb;
+    private Animator miAnim;
+
+    public GameManager gameManager;
+
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundedRadius;
+    [SerializeField] private bool isGrounded;
+
+
+    public float jumpForce = 10f;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        miAnim = GetComponent<Animator>();
+
+        groundCheck = transform.Find("GroundCheck");
     }
 
     // Update is called once per frame
     private void Update()
     {
-        //Input
-        if(Input.GetButtonDown("Fire1"))
+        if (gameManager.pausa)
         {
-
+            return;
         }
+
+            bool inGround = Physics2D.OverlapCircle(groundCheck.position, groundedRadius, whatIsGround);
+
+            if (inGround)
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                isGrounded = false;
+            }
+
+            //Input
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if (!isGrounded)
+                {
+                    return;
+                }
+                Jump();
+            }
     }
 
     void FixedUpdate()
     {
-        //Movement
-        rb.velocity = new Vector2(speed, 0f);
+        if (gameManager.pausa)
+        {
+            return;
+        }
+
+        rb.velocity = new Vector2(speed, rb.velocity.y);
+
+            miAnim.SetBool("Grounded", isGrounded);
+
+            miAnim.SetFloat("Velocity", rb.velocity.x);
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(new Vector2(0, jumpForce));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Dead")
+        {
+            transform.position = respawn.position;
+        }
     }
 }
