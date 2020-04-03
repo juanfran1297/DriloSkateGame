@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dead
   - Puntos
+  - GameManager
   layers:
   - Default
   - TransparentFX

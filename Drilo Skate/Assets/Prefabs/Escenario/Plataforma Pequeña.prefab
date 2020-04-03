@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 7767109003319900078}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.9008, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 1, z: 4}
+  m_LocalScale: {x: 4, y: 2.7875, z: 4}
   m_Children:
   - {fileID: 4062571653995692361}
   m_Father: {fileID: 0}
@@ -38,11 +38,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2299993074208725054}
     m_Modifications:
-    - target: {fileID: 4561348793320379044, guid: fec864f7bb4ef0b4fa300e4d3bc6f9fc,
-        type: 3}
-      propertyPath: m_Name
-      value: RespawnSuelo
-      objectReference: {fileID: 0}
     - target: {fileID: 3126952633969213138, guid: fec864f7bb4ef0b4fa300e4d3bc6f9fc,
         type: 3}
       propertyPath: m_Name
@@ -102,6 +97,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561348793320379044, guid: fec864f7bb4ef0b4fa300e4d3bc6f9fc,
+        type: 3}
+      propertyPath: m_Name
+      value: RespawnSuelo
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fec864f7bb4ef0b4fa300e4d3bc6f9fc, type: 3}

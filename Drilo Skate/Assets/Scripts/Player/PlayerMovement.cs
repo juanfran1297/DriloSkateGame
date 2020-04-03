@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundedRadius;
     [SerializeField] private bool isGrounded;
 
+    public AudioSource miAudio;
+
 
     public float jumpForce = 10f;
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         miAnim = GetComponent<Animator>();
+        miAudio = GetComponent<AudioSource>();
 
         groundCheck = transform.Find("GroundCheck");
         groundedRadius = .1f;
@@ -75,5 +78,10 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(new Vector2(0, jumpForce));
+
+        if(gameManager.musicOnOff == true)
+        {
+            miAudio.Play();
+        }
     }
 }
